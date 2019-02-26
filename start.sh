@@ -1,4 +1,4 @@
 #!/bin/bash
 
 npm i
-npm start
+node src/app.js
