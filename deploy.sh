@@ -10,7 +10,7 @@ cat <<EOF > docker-compose.override.yml
 version: '3'
 services:
   app:
-    command: 'npm start'
+    command: './start.sh'
     expose:
       - '5002'
     ports:
