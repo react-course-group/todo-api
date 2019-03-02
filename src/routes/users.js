@@ -1,4 +1,5 @@
 const wz = require('wajez-api')
+const U = require('wajez-utils')
 const {auth} = require('../middlewares')
 const {User, relations} = require('../models')
 const {secret} = require('../config')

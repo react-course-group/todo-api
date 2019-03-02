@@ -14,6 +14,15 @@ app.use(cors())
 app.use(bodyParser.json({limit: '50mb'}))
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
 
+app.use((req, _, next) => {
+  console.log({
+    url: req.url,
+    headers: req.headers,
+    body: req.body,
+  })
+  next()
+})
+
 app.use(wz.router(routes))
 
 app.use((err, req, res, next) => {
@@ -23,6 +32,10 @@ app.use((err, req, res, next) => {
 mongoose.connect('mongodb://mongo/todo', {useNewUrlParser: true})
 .then(() => Task.remove({}))
 .then(() => User.remove({}))
+.then(() => User.create({
+  email: 'me@todo.dev',
+  password: '123456'
+}))
 .then(() => seed({User: 10, Task: 100}, relations))
 .then(() => app.listen(80))
 .catch(console.error)
